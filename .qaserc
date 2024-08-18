@@ -1,0 +1,11 @@
+{
+  "mode": "testops",
+  "debug": false,
+  "environment": "stage",
+  "testops": {
+    "api": {
+      "token": "5a881c58d01546186375968a8fd15228f299e695e5467852b4c6318c2a3228f5"
+    },
+    "projectCode": "DEMO"
+  }
+}
