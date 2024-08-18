@@ -1,0 +1,56 @@
+{
+	"info": {
+		"_postman_id": "a9e9cffe-9ed3-499a-b656-1b15fa4b6561",
+		"name": "example_1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "19718137",
+		"_collection_link": "https://bold-desert-553148.postman.co/workspace/example~0a329a7b-6320-4af3-b64f-d1d84ceae31c/collection/19718137-a9e9cffe-9ed3-499a-b656-1b15fa4b6561?action=share&source=collection_link&creator=19718137"
+	},
+	"item": [
+		{
+			"name": "SEO_title_category",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://delivery.lambic.ru/api/seo?type=category&id=5",
+					"protocol": "https",
+					"host": [
+						"delivery",
+						"lambic",
+						"ru"
+					],
+					"path": [
+						"api",
+						"seo"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "category"
+						},
+						{
+							"key": "id",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
