@@ -1,0 +1,27 @@
+stages:
+    - test
+    - allure
+
+postman_test:     
+   stage: test
+   image: node:16   
+   script:
+       - npm install -g newman
+       - newman --version
+       - npm install -g newman-reporter-allure
+       - newman run --verbose "Tests.postman_collection.json"  -e "Env.postman_environment.json" --reporters allure,cli --reporter-allure-export allure-results
+   allow_failure: true    
+   artifacts:
+       when: always
+       paths:
+           -  allure-results
+
+allure_test:
+   rules:
+     - when: always
+       variables:
+           ALLURE_LAUNCH_NAME: "Postman tests - REGRESSION TESTING"       # Необязательно задавать, если задали в переменных выше
+   extends:
+   - .deploy
+   stage: allure
+   allow_failure: true  
