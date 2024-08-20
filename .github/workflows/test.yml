@@ -16,6 +16,6 @@ jobs:
         run: |
           newman run "19718137-a9e9cffe-9ed3-499a-b656-1b15fa4b6561" \
             --reporters cli,qase \
-            --reporter-qase-apiToken="${{ secrets.QASE_API_TOKEN }}" \
-            --reporter-qase-projectCode="${{ secrets.QASE_PROJECT_CODE }}" \
+            --reporter-qase-apiToken="5a881c58d01546186375968a8fd15228f299e695e5467852b4c6318c2a3228f5" \
+            --reporter-qase-projectCode="DEMO" \
             --reporter-qase-runName="GitHub Actions API Tests"
