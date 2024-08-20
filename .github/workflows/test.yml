@@ -12,6 +12,10 @@ jobs:
           curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
       - name: Login to Postman CLI
         run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
-      - name: Run API tests
+      - name: Run API tests and send results to Qase
         run: |
-          postman collection run "19718137-a9e9cffe-9ed3-499a-b656-1b15fa4b6561"
+          newman run "19718137-a9e9cffe-9ed3-499a-b656-1b15fa4b6561" \
+            --reporters cli,qase \
+            --reporter-qase-apiToken="${{ secrets.QASE_API_TOKEN }}" \
+            --reporter-qase-projectCode="${{ secrets.QASE_PROJECT_CODE }}" \
+            --reporter-qase-runName="GitHub Actions API Tests"
