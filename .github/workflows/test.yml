@@ -5,17 +5,18 @@ on: push
 jobs:
   automated-api-tests:
     runs-on: ubuntu-latest
+    env:
+      QASE_MODE: "testops"
+      QASE_TESTOPS_PROJECT: "DEMO"
+      QASE_API_TOKEN: ${{ secrets.QASE_API_TOKEN }}
     steps:
       - uses: actions/checkout@v4
-      - name: Install Postman CLI
+      - name: Install Postman CLI and Newman
         run: |
           curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
-      - name: Login to Postman CLI
-        run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
+          npm install -g newman
+          npm install -g newman-reporter-qase
       - name: Run API tests and send results to Qase
         run: |
           newman run ./example_1.postman_collection.json -r qase \
-            --reporters cli,qase \
-            --reporter-qase-apiToken="5a881c58d01546186375968a8fd15228f299e695e5467852b4c6318c2a3228f5" \
-            --reporter-qase-projectCode="DEMO" \
             --reporter-qase-runName="GitHub Actions API Tests"
